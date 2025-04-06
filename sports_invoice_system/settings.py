@@ -49,8 +49,9 @@ TEMPLATES = [ # Template settings for rendering HTML templates
     },
 ]
 
-WSGI_APPLICATION = 'sports_invoice_system.wsgi.application' # WSGI application for the project
+WSGI_APPLICATION = 'sports_invoice_system.wsgi.application' 
 # This file contains the WSGI application for the project.
+# wsgi = Web Server Gateway Interface- It’s a Python script that acts as the bridge between your Django app and a web server. 
 
 DATABASES = { # Database settings for the project
     'default': { # Default database configuration
