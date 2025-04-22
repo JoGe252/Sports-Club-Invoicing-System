@@ -1,0 +1,35 @@
+[
+    {
+      "model": "accounts.role",
+      "pk": 1,
+      "fields": { "name": "Admin" }
+    },
+    {
+      "model": "accounts.role",
+      "pk": 2,
+      "fields": { "name": "Member" }
+    },
+    {
+      "model": "accounts.customuser",
+      "pk": 1,
+      "fields": {
+        "username": "admin",
+        "password": "pbkdf2_sha256$260000$...$...",  
+        "role": 1,
+        "is_superuser": true,
+        "is_staff": true
+      }
+    },
+    {
+      "model": "accounts.customuser",
+      "pk": 2,
+      "fields": {
+        "username": "user1",
+        "password": "pbkdf2_sha256$260000$...$...",
+        "role": 2,
+        "is_superuser": false,
+        "is_staff": false
+      }
+    }
+  ]
+  

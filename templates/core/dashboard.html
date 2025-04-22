@@ -1,0 +1,19 @@
+<!-- This is the dashboard template for the Sports Invoice System. It displays the user's role and provides links to manage invoices based on their role. 
+The navigation bar displays the system name and a login/logout button based on user authentication status. 
+It includes a list of invoices with links to view each invoice.-->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Dashboard</h2>
+  <p>You are logged in as {{ user.username }} ({{ user.role.name }})</p>
+
+  {% if user.role.name == "Admin" %}
+    <p><a href="{% url 'invoice_list' %}">Manage All Invoices</a></p>
+  {% elif user.role.name == "Member" %}
+    <p><a href="{% url 'invoice_list' %}">View My Invoices</a></p>
+  {% elif user.role.name == "Coach" %}
+    <p><a href="{% url 'invoice_list' %}">View Member Invoices</a></p>
+  {% elif user.role.name == "Accountant" %}
+    <p><a href="{% url 'invoice_list' %}">Mark Invoices as Paid</a></p>
+  {% endif %}
+{% endblock %}

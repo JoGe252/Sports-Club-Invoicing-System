@@ -1,21 +1,18 @@
-# Django’s AbstractUser to extend user roles
-# This file defines a custom user model for the application.
-# It extends the default user model to include additional fields or methods as needed.
-# The custom user model is used to manage user roles and permissions in the application.
-# The model is defined using Django's ORM, allowing for easy database interactions.
-# Importing necessary modules from Django
+# Defines Role and CustomUser (custom auth model)
 
-from django.contrib.auth.models import AbstractUser # Importing AbstractUser to extend the default user model
-from django.db import models # Database connection
+from django.db import models # Importing models from django.db to define database models
+from django.contrib.auth.models import AbstractUser # Importing AbstractUser to create a custom user model
 
-class CustomUser(AbstractUser):# Custom user model extending AbstractUser
-    ROLE_CHOICES = ( # Defining choices for user roles
-        ('ADMIN', 'Admin'),#
-        ('COACH', 'Coach'),
-        ('MEMBER', 'Member'),
-    )
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='MEMBER')# Role field with choices
+# Role model (Admin, Member, Coach, Accountant)
+class Role(models.Model): # Defining the Role model to represent user roles
+    name = models.CharField(max_length=20, unique=True) # Field for role name, must be unique
 
-    def __str__(self):# String representation of the user role
-        return f"{self.username} ({self.get_role_display()})" # Displaying username and role in string format
-# This model can be used to manage user roles in the application.
+    def __str__(self): # String representation of the Role model
+        return self.name # Returns the name of the role
+
+# Custom user linked to a Role
+class CustomUser(AbstractUser): # Defining the CustomUser model to extend the default user model
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True) # Foreign key to the Role model, allows null values
+
+    def __str__(self): # String representation of the CustomUser model
+        return f"{self.username} ({self.role.name if self.role else 'No Role'})" # Returns the username and role name (if available) of the user

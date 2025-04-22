@@ -1,0 +1,12 @@
+<!-- This is the base template for the Sports Invoice System. It includes a navigation bar and a block for content. -->
+<!-- The navigation bar displays the system name and a login/logout button based on user authentication status. -->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Login</button>
+  </form>
+{% endblock %}

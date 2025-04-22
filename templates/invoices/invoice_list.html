@@ -1,0 +1,18 @@
+<!-- This is the invoice list template for the Sports Invoice System. It displays a list of invoices for the user. 
+The navigation bar displays the system name and a login/logout button based on user authentication status. 
+It includes a list of invoices with links to view each invoice.-->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Invoices</h2>
+  <ul class="list-group">
+    {% for invoice in invoices %}
+      <li class="list-group-item">
+        Invoice #{{ invoice.id }} for {{ invoice.user.username }} – Status: {{ invoice.status }}
+        <a href="{% url 'invoice_detail' invoice.id %}" class="btn btn-sm btn-outline-primary float-end">View</a>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No invoices found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

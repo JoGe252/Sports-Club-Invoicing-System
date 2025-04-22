@@ -1,0 +1,22 @@
+[
+    {
+      "model": "invoices.invoice",
+      "pk": 1,
+      "fields": {
+        "user": 2,
+        "due_date": "2025-05-01",
+        "status": "unpaid"
+      }
+    },
+    {
+      "model": "invoices.invoiceitem",
+      "pk": 1,
+      "fields": {
+        "invoice": 1,
+        "description": "Training Session",
+        "quantity": 2,
+        "unit_price": "50.00"
+      }
+    }
+  ]
+  

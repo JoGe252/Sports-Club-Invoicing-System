@@ -1,0 +1,22 @@
+<!-- This is the invoice detail template for the Sports Invoice System. It displays the details of a specific invoice. 
+The navigation bar displays the system name and a login/logout button based on user authentication status. 
+It includes the invoice ID, status, issued date, due date, and a list of items in the invoice.-->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Invoice #{{ invoice.id }}</h2>
+  <p><strong>Status:</strong> {{ invoice.status }}</p>
+  <p><strong>Issued Date:</strong> {{ invoice.issued_date }}</p>
+  <p><strong>Due Date:</strong> {{ invoice.due_date }}</p>
+
+  <h4>Items:</h4>
+  <ul>
+    {% for item in invoice.items.all %}
+      <li>{{ item.description }} – Qty: {{ item.quantity }} @ ${{ item.unit_price }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.role.name == "Member" %}
+    <a href="{% url 'invoice_pdf' invoice.id %}" class="btn btn-secondary">Download PDF</a>
+  {% endif %}
+{% endblock %}
